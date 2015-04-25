@@ -1,6 +1,14 @@
 openwrt-hc5761
 ==============
 
+### Bitcoind
+* Add patches for Kernel to support bitcoind
+* Change toolchain options to support bitcoind compiling
+* Remove shadowsocks which are not compatible with bitcoind compile options
+* Remove pdnsd since package downloads problem (git protocol is not available)
+
+-------
+
 OpenWrt Patch for HiWiFi HC5761 / HC5661 (based on "barrier_breaker" branch)
 
 极路由 HC5761 / HC5661（极壹、极贰、极壹S）OpenWrt补丁（基于barrier_breaker分支）

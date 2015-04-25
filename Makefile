@@ -6,6 +6,10 @@ host_packages = build-essential git flex gettext libncurses5-dev unzip gawk libl
 openwrt_feeds = libevent2 luci luci-app-samba xl2tpd pptpd pdnsd ntfs-3g ethtool
 ### mwan3 luci-app-mwan3
 
+bitcoin_feeds := libcurl libpthread jansson udev libncurses 
+bitcoin_feeds += boost-chrono boost-filesystem boost-program_options boost-thread boost-test 
+bitcoin_feeds += libopenssl libssp libstdcpp
+
 s_build_openwrt: s_install_feeds
 	@cd $(openwrt_dir); \
 		if [ -e .config ]; then \
@@ -21,9 +25,11 @@ final: s_build_openwrt
 
 s_install_feeds: s_update_feeds
 	@cd $(openwrt_dir); ./scripts/feeds install $(openwrt_feeds);
+	@cd $(openwrt_dir); ./scripts/feeds install $(bitcoin_feeds);
 	@cd $(openwrt_dir)/package; \
 	 [ -e rssnsj-packages ] || ln -s ../../packages rssnsj-packages; \
-	 [ -e rssnsj-feeds ] || git clone https://github.com/rssnsj/network-feeds.git rssnsj-feeds
+	 [ -e rssnsj-feeds ] || git clone https://github.com/rssnsj/network-feeds.git rssnsj-feeds; \
+	 [ -e bitcoind ] || git clone https://github.com/jimmysitu/bitcoind-openwrt-packages.git bitcoind
 	@touch s_install_feeds
 
 s_update_feeds: s_hiwifi_patch
