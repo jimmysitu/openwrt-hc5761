@@ -4,7 +4,7 @@ openwrt-hc5761
 ### Bitcoind
 * Add patches for Kernel to support bitcoind
 * Change toolchain options to support bitcoind compiling
-* Remove shadowsocks which are not compatible with bitcoind compile options
+* Remove shadowsocks which are not compatible with bitcoind compile options (recover later)
 * Remove pdnsd since package downloads problem (git protocol is not available)
 
 -------
